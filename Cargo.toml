@@ -1,0 +1,16 @@
+[package]
+name = "rdeunicode"
+version = "0.1.0"
+authors = ["Denis Savchuk <mordorreal@gmail.com>"]
+edition = "2018"
+
+[package.metadata.thermite]
+github_releases = true
+
+[dependencies]
+rutie = "0.6.1"
+deunicode = "1.1.1"
+
+[lib]
+name = "rdeunicode"
+crate-type = ["dylib"]
