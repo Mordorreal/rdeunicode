@@ -11,15 +11,18 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby: ["2.5", "2.6", "2.7"]
+        ruby: ["2.4.10", "2.5.8", "2.6.6", "2.7.1"]
     name: Build + Checks
     steps:
       - uses: actions/checkout@v2
 
+      - uses: masa-iwasaki/setup-rbenv@v1
+
       - name: Set up Ruby
-        uses: actions/setup-ruby@v1
-        with:
-          ruby-version: ${{ matrix.ruby }}
+        run: |
+          eval "$(rbenv init -)"
+          CONFIGURE_OPTS=--enable-shared rbenv install ${{ matrix.ruby }}
+          rbenv shell ${{ matrix.ruby }}
 
       - uses: actions/cache@v1
         with:
@@ -48,10 +51,14 @@ jobs:
 
       - name: Install dependencies
         run: |
+          eval "$(rbenv init -)"
+          rbenv shell ${{ matrix.ruby }}
           gem install bundler
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
 
       - name: Run linters & tests
         run: |
-          bundle exec rake test
+          eval "$(rbenv init -)"
+          rbenv shell ${{ matrix.ruby }}
+          NO_LINK_RUTIE=true bundle exec rake test
