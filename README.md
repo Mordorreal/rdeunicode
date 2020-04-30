@@ -1,8 +1,8 @@
 # Rdeunicode
 
 [![Gem Version](https://badge.fury.io/rb/rdeunicode.svg)](https://badge.fury.io/rb/rdeunicode)
-[![Commits Since Last Release](https://img.shields.io/github/commits-since/Mordorreal/rdeunicode/v0.1.0.svg)](https://github.com/Mordorreal/rdeunicode/pulse)
-[![Binary Release](https://img.shields.io/github/release/Mordorreal/rdeunicode.svg)](https://github.com/Mordorreal/rdeunicode/releases)
+[![Commits Since Last Release](https://img.shields.io/github/commits-since/Mordorreal/rdeunicode/v0.1.1.svg)](https://github.com/Mordorreal/rdeunicode/pulse)
+[![Build Status](https://img.shields.io/appveyor/build/Mordorreal/rdeunicode)](https://github.com/Mordorreal/rdeunicode/actions)
 
 ## Installation
 
