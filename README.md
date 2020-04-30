@@ -17,7 +17,7 @@ curl -sSf https://static.rust-lang.org/rustup.sh | sh
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'rdeunicode', '~> 0.1.0'
+gem 'rdeunicode', '~> 0.1.1'
 ```
 
 And then execute:
