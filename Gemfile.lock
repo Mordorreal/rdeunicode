@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rdeunicode (0.1.0)
+    rdeunicode (0.1.1)
       rutie (~> 0.0.3)
       thermite (~> 0)
 

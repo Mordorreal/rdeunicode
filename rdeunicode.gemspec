@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Denis Savchuk']
   spec.email         = ['mordorreal@gmail.com']
 
-  spec.summary       = 'Ruby gem that is wrapper for deunicode rust crate'
+  spec.summary       = 'Ruby gem that is wrapper for deunicode Rust crate'
   spec.description   = %(Rdeunicode is wrapper around deunicode that bring that
     awesome crate to Ruby. Enjoy.)
   spec.homepage      = 'https://github.com/Mordorreal/rdeunicode'
