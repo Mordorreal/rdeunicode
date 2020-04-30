@@ -1,4 +1,4 @@
-name: Build + Checks
+name: Rdeunicode pipeline
 
 on:
   push:
@@ -8,18 +8,50 @@ on:
 
 jobs:
   build:
-    name: Build + Checks
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        ruby: ["2.5", "2.6", "2.7"]
+    name: Build + Checks
     steps:
       - uses: actions/checkout@v2
-      - name: Set up Ruby 2.6
+
+      - name: Set up Ruby
         uses: actions/setup-ruby@v1
         with:
-          ruby-version: 2.6.x
+          ruby-version: ${{ matrix.ruby }}
 
-      - name: Run Checks
+      - uses: actions/cache@v1
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+
+      - name: Cache cargo registry
+        uses: actions/cache@v1
+        with:
+          path: ~/.cargo/registry
+          key: ${{ runner.os }}-cargo-registry-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Cache cargo index
+        uses: actions/cache@v1
+        with:
+          path: ~/.cargo/git
+          key: ${{ runner.os }}-cargo-index-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Cache cargo build
+        uses: actions/cache@v1
+        with:
+          path: target
+          key: ${{ runner.os }}-cargo-build-target-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Install dependencies
         run: |
-          gem install bundle
-          bundle install
+          gem install bundler
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
+
+      - name: Run linters & tests
+        run: |
           bundle exec rake test
