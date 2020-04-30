@@ -16,6 +16,8 @@ Gem::Specification.new do |spec|
   spec.homepage      = 'https://github.com/Mordorreal/rdeunicode'
   spec.license       = 'MIT'
 
+  spec.required_ruby_version = '>= 2.4.10'
+
   spec.files = [
     'Cargo.lock', 'Cargo.toml', 'Gemfile', 'LICENSE.txt', 'README.md',
     'bin/console', 'bin/setup', 'Rakefile', 'rdeunicode.gemspec',
